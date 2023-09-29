@@ -15,6 +15,8 @@ the following project has a Navbar on top which changes dynamicly depends on whi
 you can you the search bar to help yourself find any articles and you can sign up anytime,
 the Project has a LightMode and DarkMode which only signed Users can see and change
 
+to make sure not everyone can signUp as Admins i made a "Hidden URL" you need to enter to /admin/signup
+
 so whats does every user Type can do ?
 
 Admins:
