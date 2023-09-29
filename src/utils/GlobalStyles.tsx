@@ -19,11 +19,10 @@ const lightObj = {
 };
 
 export const GlobalStyles = createGlobalStyle<{ $isDarkTheme: boolean }>`
-@import url('https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap');
     body {
         background-color: ${({ theme }) => theme.medium};
         color: ${({ theme }) => theme.text};
-        font-family: 'Martian Mono', monospace;
+        font-family: 'PT Serif', serif;
         transition: 200ms ease;
     }
 
