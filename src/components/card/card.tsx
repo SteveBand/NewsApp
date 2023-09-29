@@ -21,6 +21,7 @@ export const Card: React.FC<any> = ({
   const [isLiked, setIsLiked] = useState(false);
   const path = useLocation().pathname;
 
+  ///Function that allows admin to delete every article from database
   const adminDelete = () => {
     if (user?.admin) {
       fetch(
@@ -30,6 +31,7 @@ export const Card: React.FC<any> = ({
           method: "DELETE",
         }
       );
+      ///creating new list without the article and updating state for fast render
       const newList = allArticles.filter((item: ArticleType) => {
         return item.id !== article.id;
       });
@@ -38,6 +40,8 @@ export const Card: React.FC<any> = ({
     }
   };
 
+
+  ///Function that allows Business user delete his own articles
   const businessDelete = () => {
     if (user?.business && user.id == article.clientId) {
       fetch(
@@ -47,6 +51,7 @@ export const Card: React.FC<any> = ({
           method: "DELETE",
         }
       );
+      ///creating new list without the article and updating state for fast render
       const newList = allArticles.filter((item: ArticleType) => {
         return item.id !== article.id;
       });
@@ -55,6 +60,7 @@ export const Card: React.FC<any> = ({
     }
   };
 
+  ///function to let a user favorite an article
   const handleFavourite = () => {
     try {
       fetch(
@@ -64,6 +70,8 @@ export const Card: React.FC<any> = ({
           method: "PUT",
         }
       );
+
+      ///updating a state for a faster update/render
       article.favorite = true;
       setIsLiked(!isLiked);
       console.log(article.favorite);
@@ -71,6 +79,8 @@ export const Card: React.FC<any> = ({
       throw err;
     }
   };
+
+  ///function to unFavorite an article
 
   const handleUnFavorite = () => {
     try {
@@ -81,14 +91,17 @@ export const Card: React.FC<any> = ({
           credentials: "include",
         }
       );
+      ///updating a state for a faster update/render
       article.favorite = false;
       setIsLiked(!isLiked);
       if (path === "/user/favorites") {
+        ///new FavoritList to push and update the favorite list state for faster render
         const updatedFavoriteList = favouriteList.filter(
           (c: ArticleType) => c.id !== article.id
         );
         setFavouriteList(updatedFavoriteList);
       }
+      ///new AllArticles List to push and update the Articles list state for faster render
       const updatedAllList = allArticles.map((c) => {
         if (c.id == article.id) {
           c.favorite = false;
