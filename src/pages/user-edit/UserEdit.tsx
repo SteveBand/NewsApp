@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export const UserEdit = () => {
   const { user, setUser } = useContext(globalContext);
-  const [params, setParams] = useState<User | undefined>(user);
+  const [params, setParams] = useState<User | undefined>();
   const [errors, setErrors] = useState();
   const [clients, setClients] = useState<User[] | undefined>();
   const { id } = useParams();
@@ -29,12 +29,12 @@ export const UserEdit = () => {
   ) => {
     const { id, value } = e.target;
     const obj = {
-      ...user,
+      ...params,
       [id]: value,
     };
 
     setParams(obj);
-
+    console.log(params);
     ///validates with joi if there are any errors by our made schema
     const validation = schema.validate(obj, { abortEarly: false });
     const errorsObj: any = {};
@@ -56,14 +56,26 @@ export const UserEdit = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      fetch(`https://api.shipap.co.il/clients/update?token=${token}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(params),
-        ///if server return Ok then we setting the global User State to the new Data by setting user state with params state directly
-      }).then((res) => res.ok && setUser(params));
-      navigate("/user/profile");
+      fetch(
+        !id
+          ? `https://api.shipap.co.il/clients/update?token=${token}`
+          : `https://api.shipap.co.il/admin/clients/${id}?token=${token}`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(params),
+          ///if server return Ok then we setting the global User State to the new Data by setting user state with params state directly
+        }
+      ).then((res) => {
+        if (res.ok) {
+          if (!id) {
+            setUser(params);
+            navigate("/user/profile");
+          }
+          navigate("/admin/clients");
+        }
+      });
     } catch (err) {
       throw err;
     }
@@ -88,8 +100,9 @@ export const UserEdit = () => {
 
   ///Constant for setting the specific client we need by Id by find method and returns it as an array for map method by using Object.entries
   const clientArr = useMemo(() => {
-    ///searching in clientsData for specific client 
+    ///searching in clientsData for specific client
     const clientById = clients?.find((c) => c.id == id);
+    setParams(clientById);
     const clientArr =
       clientById &&
       Object.entries(clientById).filter((c) => {

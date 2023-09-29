@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { globalContext } from "../../App";
 import { Context } from "../../utils/globalTypes";
@@ -43,7 +43,7 @@ export const Card: React.FC<any> = ({
 
   ///Function that allows Business user delete his own articles
   const businessDelete = () => {
-    if (user?.business && user.id == article.clientId) {
+    if (user?.business && user.id === article.clientId) {
       fetch(
         `https://api.shipap.co.il/business/cards/${article.id}?token=${token}`,
         {
@@ -103,7 +103,7 @@ export const Card: React.FC<any> = ({
       }
       ///new AllArticles List to push and update the Articles list state for faster render
       const updatedAllList = allArticles.map((c) => {
-        if (c.id == article.id) {
+        if (c.id === article.id) {
           c.favorite = false;
         }
         return c;

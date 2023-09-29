@@ -61,8 +61,18 @@ export const ProfileModalWrapper = styled.section`
       letter-spacing: 1px;
       transition: 200ms ease;
       cursor: pointer;
+      color: black;
       &:hover {
         letter-spacing: 2.5px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    article {
+      .image-container {
+        width: 180px;
+        height: 180px;
       }
     }
   }

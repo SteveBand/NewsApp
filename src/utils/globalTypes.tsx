@@ -39,6 +39,7 @@ export interface Context {
   isDarkTheme: boolean;
 }
 
+
 export type ArticleType = {
   id: number;
   createdTime?: string;
@@ -56,7 +57,8 @@ export type ArticleType = {
   street: string;
   houseNumber: string;
   zip: string;
-  ClientId?: string;
+  clientId?: string;
+  favorite?: boolean;
 };
 
 export type User = {

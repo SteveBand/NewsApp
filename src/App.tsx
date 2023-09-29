@@ -17,6 +17,7 @@ import { UserEdit } from "./pages/user-edit/UserEdit";
 import { SnackBar } from "./components/snackbar/Snackbar";
 import { GlobalStyles, darkTheme, lightTheme } from "./utils/GlobalStyles";
 import { ThemeProvider } from "styled-components";
+import { ErrorPage } from "./pages/error-page/ErrorPage";
 
 export const token = "d29875fa-3431-11ee-b3e9-14dda9d4a5f0";
 
@@ -125,6 +126,7 @@ function App() {
             <Route element={<AdminSignup />} path="/admin/signup" />
             <Route element={<UserEdit />} path="/user/edit" />
             <Route element={<UserEdit />} path="/user/edit/:id" />
+            <Route element={<ErrorPage />} path="*" />
           </Routes>
         </globalContext.Provider>
       </>

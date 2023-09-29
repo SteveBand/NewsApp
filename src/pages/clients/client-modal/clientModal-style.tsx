@@ -28,6 +28,7 @@ export const ClientModalWrapper = styled.section`
       right: 20px;
       top: 20px;
       cursor: pointer;
+      color: black;
 
       &:hover {
         scale: 1.2;
@@ -54,7 +55,7 @@ export const ClientModalWrapper = styled.section`
       grid-template-columns: repeat(2, 1fr);
       padding: 0 20px;
       gap: 10px;
-
+      color: black;
       .detail {
         display: flex;
         gap: 5px;

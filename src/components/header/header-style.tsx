@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const backgroundColor = "#2E2F41";
-const searchWrapperBG = "#3F4254";
-const writeBtnBGColor = "#F6AC7A";
 export const HeaderWrapper = styled.header<{ $dropdown?: string }>`
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
   width: 100%;
@@ -13,43 +10,6 @@ export const HeaderWrapper = styled.header<{ $dropdown?: string }>`
   height: 100px;
   padding: 0 15px 0 30px;
   box-sizing: border-box;
-
-  .title {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-    .icon {
-      font-size: 25px;
-      transition: 200ms ease-in-out;
-      cursor: pointer;
-      display: none;
-      &:hover {
-        scale: 1.2;
-      }
-    }
-
-    ul {
-      display: flex;
-      list-style: none;
-      gap: 10px;
-      li {
-        font-size: 17px;
-        letter-spacing: 1px;
-        transition: 200ms ease;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-          scale: 1.05;
-        }
-      }
-    }
-  }
 
   .searchbar-wrapper {
     display: flex;
@@ -143,14 +103,6 @@ export const HeaderWrapper = styled.header<{ $dropdown?: string }>`
 
   @media screen and (max-width: 890px) {
     justify-content: space-around;
-    .title {
-      .icon {
-        display: block;
-      }
-      ul {
-        display: none;
-      }
-    }
   }
 
   @media screen and (max-width: 615px) {

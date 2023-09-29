@@ -9,11 +9,13 @@ import { CreateArticleWrapper } from "../create-article/utils/createArticle-styl
 import { useParams, useNavigate } from "react-router-dom";
 import { globalContext, token } from "../../App";
 import { LettersLoader } from "../../components/loaders/letters/LettersLoader";
+import { ArticleType } from "../../utils/globalTypes";
 
 export const EditArticle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { handleSnackbar } = useContext(globalContext);
+  const { handleSnackbar, allArticles, setAllArticles } =
+    useContext(globalContext);
   const [loader, setLoader] = useState(false);
 
   const [params, setParams] = useState<ArticleType>({
@@ -31,6 +33,7 @@ export const EditArticle = () => {
     street: "",
     houseNumber: "",
     zip: "",
+    id: Number(id),
   });
 
   ///handles inputs onChange method to keep params State updated
@@ -62,6 +65,13 @@ export const EditArticle = () => {
       );
       if (res.ok) {
         handleSnackbar("Article Successfully Edited");
+        const newArr = allArticles.map((c) => {
+          if (c.id === Number(id)) {
+            return params;
+          }
+          return c;
+        });
+        setAllArticles(newArr);
         navigate(`/article/${params.id}`);
       } else {
         handleSnackbar("something went Wrong Or you are Unautherized");
@@ -142,24 +152,4 @@ export const EditArticle = () => {
       </form>
     </CreateArticleWrapper>
   );
-};
-
-type ArticleType = {
-  id?: number;
-  createdTime?: string;
-  title?: string;
-  description?: string;
-  subtitle?: string;
-  phone?: string;
-  email?: string;
-  web?: string;
-  imgUrl: string;
-  imgAlt?: string;
-  state?: string;
-  country?: string;
-  city?: string;
-  street?: string;
-  houseNumber?: string;
-  zip?: string;
-  clientId?: number;
 };

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { globalContext } from "../../../../App";
 import { CgProfile } from "react-icons/cg";
@@ -24,6 +24,7 @@ export const ActionButtons = () => {
     }
   };
 
+  ///function to change from dark mode to light mode
   const handleThemeMode = () => {
     const current = localStorage.getItem("theme");
     if (current === "dark") {
@@ -37,17 +38,20 @@ export const ActionButtons = () => {
 
   return (
     <ActionButtonsWrapper $dropdown={dropdown}>
-      {user?.business && (
+      {user?.business || user?.admin ? (
         <>
           <div className="write-wrapper" onClick={() => navigate("/create")}>
             <FiEdit className="icon" />
             <p>Write</p>
           </div>
         </>
-      )}
+      ) : null}
       <div>
         {isDarkTheme ? (
-          <MdOutlineDarkMode className="dark" onClick={() => handleThemeMode()} />
+          <MdOutlineDarkMode
+            className="dark"
+            onClick={() => handleThemeMode()}
+          />
         ) : (
           <MdLightMode className="light" onClick={() => handleThemeMode()} />
         )}
