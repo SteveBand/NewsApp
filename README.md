@@ -12,6 +12,8 @@ the following project has a Navbar on top which changes dynamicly depends on whi
 
 to signUp as and admin (Wanted to make it spaciel so not everyone can just choose to signUp as an admin), you need to enter the URL /admin/signup
 
+to make sure not everyone can signUp as Admins i made a "Hidden URL" you need to enter to /admin/signup
+
 so whats does every user Type can do ?
 
 Admins:
