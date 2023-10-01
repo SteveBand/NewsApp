@@ -14,7 +14,8 @@ to signUp as and admin (Wanted to make it spaciel so not everyone can just choos
 
 so whats does every user Type can do ?
 
-Admins: Admins can Remove any article And add end edit their own articles || and can edit and remove anyUser, ofc they can favorite articles as well.
+Admins:
+Admins can Remove any article And add end edit their own articles || and can edit and remove anyUser, ofc they can favorite articles as well.
 
 Business: Business can add, edit, delete and favorite Articles, the can delete and edit only articles they've made
 
